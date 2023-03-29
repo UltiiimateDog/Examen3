@@ -30,7 +30,7 @@ public class Examen3 {
                 names = currentLine.split(",");
                 while( (currentLine = bufReader.readLine()) != null)   {
                     String[] arregloDeLinea = currentLine.split(",");
-                    if (j > begin && j < end)    {
+                    if (j >= begin && j <= end)    {
                         for(int i = 1; i < 3001; i++)   {
                             values[i-1] += Integer.parseInt(arregloDeLinea[i]);
                         }
