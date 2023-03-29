@@ -10,9 +10,13 @@ import java.io.FileReader;
 public class Examen3 {
     private File ListaCSV = new File("C:\\Users\\Alan\\Documents\\UDLAP\\2 Semestre\\POO\\parcial_3\\archive", "emails.csv");
 
-    public void ejecutar()  {
+    public void ejecutar(int ID)  {
         String currentLine;
-        File data = new File("C:\\Users\\Alan\\Documents\\UDLAP\\2 Semestre\\POO\\parcial_3\\archive", "data.txt");
+        String IDString = String.valueOf(ID);
+        String subIDString = IDString.substring(IDString.length() - 3);
+        int begin = Integer.parseInt(subIDString);
+        int end = begin + 50;
+        File data = new File("C:\\Users\\Alan\\Documents\\UDLAP\\2 Semestre\\POO\\parcial_3\\archive", IDString +".txt");
         int[] values = new int[3000];
         String[] names = new String[1];
         for(int i = 0; i < 3000; i++)   {
@@ -26,12 +30,12 @@ public class Examen3 {
                 names = currentLine.split(",");
                 while( (currentLine = bufReader.readLine()) != null)   {
                     String[] arregloDeLinea = currentLine.split(",");
-                    if (j > 730 && j < 780)    {
+                    if (j > begin && j < end)    {
                         for(int i = 1; i < 3001; i++)   {
                             values[i-1] += Integer.parseInt(arregloDeLinea[i]);
                         }
                     }
-                    if (j > 780)    {
+                    if (j > end)    {
                         break;
                     }
                     j++;
@@ -49,9 +53,9 @@ public class Examen3 {
                     e.printStackTrace();
                 }
             }
-            try (PrintWriter writer = new PrintWriter("C:\\Users\\Alan\\Documents\\UDLAP\\2 Semestre\\POO\\parcial_3\\archive\\" + "data.txt")) {
+            try (PrintWriter writer = new PrintWriter("C:\\Users\\Alan\\Documents\\UDLAP\\2 Semestre\\POO\\parcial_3\\archive\\" + IDString +".txt")) {
                 for(int i = 0; i < 3000; i++)   {
-                    writer.print(names[i+1] + ": ");
+                    writer.print(names[i+1] + ", ");
                     writer.println(values[i]);
                 }
                 writer.close();
