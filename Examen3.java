@@ -14,15 +14,16 @@ public class Examen3 {
         String currentLine;
         File data = new File("C:\\Users\\Alan\\Documents\\UDLAP\\2 Semestre\\POO\\parcial_3\\archive", "data.txt");
         int[] values = new int[3000];
+        String[] names = new String[1];
         for(int i = 0; i < 3000; i++)   {
             values[i] = 0;
         }
-        int j = 0;
+        int j = 1;
         if (this.ListaCSV.exists())    {
             try (FileReader fileReader = new FileReader(ListaCSV)) {
                 BufferedReader bufReader = new BufferedReader(fileReader);
                 currentLine = bufReader.readLine();//Esta linea es la que tiene el encabezado de la tabla
-                
+                names = currentLine.split(",");
                 while( (currentLine = bufReader.readLine()) != null)   {
                     String[] arregloDeLinea = currentLine.split(",");
                     if (j > 730 && j < 780)    {
@@ -50,6 +51,7 @@ public class Examen3 {
             }
             try (PrintWriter writer = new PrintWriter("C:\\Users\\Alan\\Documents\\UDLAP\\2 Semestre\\POO\\parcial_3\\archive\\" + "data.txt")) {
                 for(int i = 0; i < 3000; i++)   {
+                    writer.print(names[i+1] + ": ");
                     writer.println(values[i]);
                 }
                 writer.close();
