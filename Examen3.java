@@ -8,7 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class Examen3 {
-    private File ListaCSV = new File("C:\\Users\\Alan\\Documents\\UDLAP\\2 Semestre\\POO\\parcial_3\\archive", "emails.csv");
+    private File ListaCSV = new File("emails.csv");
 
     public void ejecutar(int ID)  {
         String currentLine;
@@ -16,7 +16,7 @@ public class Examen3 {
         String subIDString = IDString.substring(IDString.length() - 3);
         int begin = Integer.parseInt(subIDString);
         int end = begin + 50;
-        File data = new File("C:\\Users\\Alan\\Documents\\UDLAP\\2 Semestre\\POO\\parcial_3\\archive", IDString +".txt");
+        File data = new File(IDString + ".txt");
         int[] values = new int[3000];
         String[] names = new String[1];
         for(int i = 0; i < 3000; i++)   {
@@ -53,7 +53,7 @@ public class Examen3 {
                     e.printStackTrace();
                 }
             }
-            try (PrintWriter writer = new PrintWriter("C:\\Users\\Alan\\Documents\\UDLAP\\2 Semestre\\POO\\parcial_3\\archive\\" + IDString +".txt")) {
+            try (PrintWriter writer = new PrintWriter(IDString +".txt")) {
                 for(int i = 0; i < 3000; i++)   {
                     writer.print(names[i+1] + ", ");
                     writer.println(values[i]);
@@ -63,6 +63,9 @@ public class Examen3 {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+        }
+        else {
+            System.out.println("Not found");
         }
     }
 }
